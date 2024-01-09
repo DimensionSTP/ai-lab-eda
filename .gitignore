@@ -1,0 +1,12 @@
+__pycache__
+*.txt
+*.csv
+*.zip
+*.docx
+*.pdf
+*.png
+*.xlsx
+tmp*
+logs/
+wandb/
+!requirements.txt
