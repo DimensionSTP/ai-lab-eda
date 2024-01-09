@@ -1,0 +1,61 @@
+# @package _global_
+defaults:
+  - statistics_module: statistics_module
+  - hydra: hydra
+
+project_dir: C:/Users/ddang/Desktop/projects/ai-lab-eda
+dataset: binary.csv
+dataset_path: data
+features: ${whole_features}
+method: t_test
+
+whole_features:
+  - HighBP
+  - HighChol
+  - CholCheck
+  - BMI
+  - Smoker
+  - Stroke
+  - HeartDiseaseorAttack
+  - PhysActivity
+  - Fruits
+  - Veggies
+  - HvyAlcoholConsump
+  - AnyHealthcare
+  - NoDocbcCost
+  - GenHlth
+  - MentHlth
+  - PhysHlth
+  - DiffWalk
+  - Sex
+  - Age
+  - Education
+  - Income
+
+continuous_features:
+  - BMI
+  - GenHlth
+  - MentHlth
+  - PhysHlth
+  - Age
+  - Education
+  - Income
+
+categorical_features:
+  - HighBP
+  - HighChol
+  - CholCheck
+  - Smoker
+  - Stroke
+  - HeartDiseaseorAttack
+  - PhysActivity
+  - Fruits
+  - Veggies
+  - HvyAlcoholConsump
+  - AnyHealthcare
+  - NoDocbcCost
+  - DiffWalk
+  - Sex
+
+run_name: analyze_statistics
+work_dir: ${hydra:runtime.cwd}

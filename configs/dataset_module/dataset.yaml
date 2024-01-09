@@ -1,0 +1,3 @@
+_target_: src.dataset_modules.dataset.DiabetesDataset
+df_path: ${data_path}/${data_name}
+meaningful_features: ${meaningful_features}

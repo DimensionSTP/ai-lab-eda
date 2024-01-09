@@ -1,0 +1,6 @@
+_target_: src.statistics_modules.statistical_analysis.StatisticalAnalysis
+df_path: ${project_dir}/${dataset_path}/${dataset}
+features: ${features}
+method: ${method}
+result_path: ${project_dir}/result_reports
+result_name: analyze_statistics_results.csv
