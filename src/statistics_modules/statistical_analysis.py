@@ -15,7 +15,7 @@ class StatisticalAnalysis():
         method: str,
         result_path: str,
         result_name: str,
-    ):
+    ) -> None:
         self.df = pd.read_csv(df_path)
         self.features = features
         self.method = method
@@ -26,9 +26,7 @@ class StatisticalAnalysis():
         positive, negative = self.get_groups()
         self.analyze_statistics(positive, negative)
 
-    def get_groups(
-        self,
-    ) -> Tuple[pd.DataFrame, pd.DataFrame]:
+    def get_groups(self) -> Tuple[pd.DataFrame, pd.DataFrame]:
         positive = self.df[(self.df["Diabetes_binary"] == 1)]
         negative = self.df[(self.df["Diabetes_binary"] == 0)]
         return (positive, negative)

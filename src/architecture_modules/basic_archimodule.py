@@ -23,7 +23,7 @@ class BasicClassifierModule():
         self,
         model_save_path: str,
         result_path: str,
-    ):
+    ) -> None:
         self.model_save_path = model_save_path
         self.result_path = result_path
 

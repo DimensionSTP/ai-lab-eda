@@ -8,7 +8,7 @@ class DiabetesDataset():
         self,
         df_path: str,
         meaningful_features: List[str],
-    ):
+    ) -> None:
         self.df_path = df_path
         self.meaningful_features = meaningful_features
 
