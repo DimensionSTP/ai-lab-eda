@@ -6,6 +6,21 @@
 Diabetes Health Indicators Dataset
 👉🏻[Link](https://www.kaggle.com/datasets/julnazz/diabetes-health-indicators-dataset/data "Diabetes Health Indicators Dataset from kaggle")
 
+### 🚀Quick setup
+
+```bash
+# clone project
+git clone https://github.com/DimensionSTP/ai-lab-eda.git
+cd ai-lab-eda
+
+# [OPTIONAL] create conda environment
+conda create -n myenv python=3.8
+conda activate myenv
+
+# install requirements
+pip install -r requirements.txt
+```
+
 ### Before using package
 Rename data files
 diabetes_012_health_indicators_BRFSS2021.csv -> multiclasses.csv
