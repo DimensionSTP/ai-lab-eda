@@ -51,12 +51,17 @@ python get_dataset.py
 
 ### Machine Learning(Diabetes classifier)
 
-* basic LGBM classifier training
+* all classifier tuning
 ```shell
-./scripts/basic_train.sh
+./scripts/tune.sh
 ```
 
-* basic LGBM classifier testing
+* all classifier training
 ```shell
-./scripts/basic_test.sh
+./scripts/train.sh
+```
+
+* all classifier testing
+```shell
+./scripts/test.sh
 ```
