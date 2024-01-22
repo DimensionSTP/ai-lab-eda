@@ -38,7 +38,7 @@ features: all_features
 model_save_path: ${project_dir}/save_model/${model_name}/${data_type}/${features}
 result_path: ${project_dir}/result_reports/${model_name}
 
-result_name: basic_${features}_test_result.csv
+result_name: ${model_name}_${features}_test_result.csv
 
 project_name: LGBMClassifier
 
