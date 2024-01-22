@@ -13,8 +13,8 @@ class MLSetUp:
         self.config = config
 
     def get_dataset(self) -> DiabetesDataset:
-        diabetes_dataset: DiabetesDataset = instantiate(self.config.dataset_module)
-        return diabetes_dataset
+        dataset: DiabetesDataset = instantiate(self.config.dataset_module)
+        return dataset
 
     def get_architecture_module(self) -> Union[LGBMClassifierModule, XGBClassifierModule]:
         architecture_module: Union[LGBMClassifierModule, XGBClassifierModule] = instantiate(self.config.architecture_module)
