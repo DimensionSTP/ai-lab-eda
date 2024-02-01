@@ -31,7 +31,7 @@ Data files must be in a "data" folder
 
 Download the libraries according to requirements.txt.
 
-Modify the "project_dir" of the top config files to suit you.
+Modify the "project_dir" of the top config files to suit yours.
 
 Sign up for wandb.ai and get an authentication token.
 
