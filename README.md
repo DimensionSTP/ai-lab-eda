@@ -51,17 +51,38 @@ python get_dataset.py
 
 ### Machine Learning(Diabetes classifier)
 
-* all classifier tuning
+* model tuning
+```shell
+python main.py mode=tune is_tuned=False
+```
+
+* model training
+```shell
+python main.py mode=train is_tuned={bool}
+```
+
+* model testing
+```shell
+python main.py mode=test is_tuned={bool} epoch={ckpt epoch}
+```
+
+* all model tuning
 ```shell
 ./scripts/tune.sh
 ```
 
-* all classifier training
+* all model training
 ```shell
 ./scripts/train.sh
 ```
 
-* all classifier testing
+* all model testing
 ```shell
 ./scripts/test.sh
 ```
+
+__If you want to change main config, use --config-name={config_name}.__
+
+__Also, you can use --multirun option.__
+
+__You can set additional arguments through the command line.__
