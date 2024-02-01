@@ -1,2 +1,2 @@
 HYDRA_FULL_ERROR=1 python main.py --multirun mode=train data_type=all_data,binary_imbalanced,undersampled
-HYDRA_FULL_ERROR=1 python main.py --config-name=.yaml --multirun mode=train data_type=all_data,binary_imbalanced,undersampled
+HYDRA_FULL_ERROR=1 python main.py --multirun --config-name=xgb.yaml mode=train data_type=all_data,binary_imbalanced,undersampled
