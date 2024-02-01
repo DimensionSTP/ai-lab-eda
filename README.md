@@ -53,7 +53,7 @@ python get_dataset.py
 
 * model tuning
 ```shell
-python main.py mode=tune is_tuned=False
+python main.py mode=tune
 ```
 
 * model training
@@ -63,7 +63,7 @@ python main.py mode=train is_tuned={bool}
 
 * model testing
 ```shell
-python main.py mode=test is_tuned={bool}
+python main.py mode=test
 ```
 
 * all model tuning
