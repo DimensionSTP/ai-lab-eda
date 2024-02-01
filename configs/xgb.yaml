@@ -45,7 +45,7 @@ split_size: 0.2
 metric: f1
 num_trials: 100
 tuning_way: original
-hparams_save_path: ${project_dir}/hparams/${model_name}/${data_type}/${features}//${tuning_way}${num_trials}_trials
+hparams_save_path: ${project_dir}/hparams/${model_name}/${data_type}/${features}/${tuning_way}/${num_trials}_trials
 
 is_tuned: True
 model_save_path: ${project_dir}/save_model/${model_name}/${data_type}/${features}
