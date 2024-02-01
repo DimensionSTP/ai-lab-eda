@@ -1,14 +1,14 @@
 # @package _global_
 defaults:
-  - dataset_module: dataset
-  - architecture_module: lgbm_archimodule
+  - dataset: diabetes_dataset
+  - tuner: xgb_tuner
   - hydra: hydra
 
 project_dir: C:/Users/ddang/Desktop/projects/ai-lab-eda
 
 data_path: ${project_dir}/data
 data_type: all_data
-data_name: ${data_type}_test.csv
+data_name: ${data_type}_train.csv
 meaningful_features:
   - HighBP
   - HighChol
@@ -32,17 +32,18 @@ meaningful_features:
   - Education
   - Income
 
-model_name: lgbm
-features: all_features
+split_size: 0.2
+num_folds: 10
+metric: f1
+num_trials: 100
+seed: 2024
+tuning_way: original
+model_name: xgb
+save_path: ${project_dir}/hparams
 
-model_save_path: ${project_dir}/save_model/${model_name}/${data_type}/${features}
-result_path: ${project_dir}/result_reports/${model_name}
+project_name: XGBClassifier
 
-result_name: ${model_name}_${features}_test_result.csv
-
-project_name: LGBMClassifier
-
-run_name: ${tags}-test
+run_name: ${tags}-tune
 work_dir: ${hydra:runtime.cwd}
 
-tags: ${project_name}-diabetes-${features}
+tags: ${project_name}-diabetes-tuning_way_{tuning_way}-metric_{metric}-num_trials{num_trials}

@@ -11,16 +11,16 @@ from tqdm import tqdm
 from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score, f1_score
 
-import xgboost as xgb
-from xgboost import plot_importance
+import lightgbm as lgb
+from lightgbm import plot_importance
 
 import wandb
-from wandb.xgboost import WandbCallback
+from wandb.lightgbm import wandb_callback, log_summary
 
 import matplotlib.pyplot as plt
 
 
-class XGBClassifierModule():
+class LGBMArchitecture():
     def __init__(
         self,
         model_name: str,
@@ -47,30 +47,39 @@ class XGBClassifierModule():
             params["verbose"] = -1
         else:
             params = {
-                "booster": "gbtree",
-                "objective": "binary:logistic",
-                "eval_metric": "logloss",
+                "boosting_type": "gbdt",
+                "objective": "binary",
+                "metric": "binary_logloss",
+                "seed": seed,
             }
 
         wandb.init(project="diabetes", entity="DimensionSTP", name=self.model_name)
-
-        classifier = xgb.XGBClassifier(**params, random_state=seed)
 
         accs = []
         f1s = []
         for i, idx in enumerate(tqdm(kf.split(data, label))):
             train_data, train_label = data.loc[idx[0]], label.loc[idx[0]]
             val_data, val_label = data.loc[idx[1]], label.loc[idx[1]]
+            train_dataset = lgb.Dataset(train_data, train_label)
+            val_dataset = lgb.Dataset(val_data, val_label)
 
-            classifier.fit(train_data, train_label, callbacks=[WandbCallback(log_model=True)])
+            classifier = lgb.train(
+                params,
+                train_dataset,
+                valid_sets=[train_dataset, val_dataset],
+                valid_names=("validation"),
+                callbacks=[wandb_callback()],
+            )
+            log_summary(classifier, save_model_checkpoint=True)
 
             if not os.path.exists(self.model_save_path):
                 os.makedirs(self.model_save_path)
-            classifier.save_model(f"{self.model_save_path}/fold{i}.model")
+            classifier.save_model(f"{self.model_save_path}/fold{i}.txt")
 
             pred = classifier.predict(val_data)
-            accuracy = accuracy_score(val_label, pred)
-            f1 = f1_score(val_label, pred)
+            pred_binary = np.where(pred > 0.5, 1 , 0)
+            accuracy = accuracy_score(val_label, pred_binary)
+            f1 = f1_score(val_label, pred_binary)
             accs.append(accuracy)
             f1s.append(f1)
         avg_acc = np.mean(accs)
@@ -125,8 +134,7 @@ class XGBClassifierModule():
     ) -> None:
         pred_mean = np.zeros((len(data),))
         for model_file in (tqdm(os.listdir(self.model_save_path))):
-            classifier = xgb.XGBClassifier()
-            classifier.load_model(f"{self.model_save_path}/{model_file}")
+            classifier = lgb.Booster(model_file=f"{self.model_save_path}/{model_file}")
             pred = classifier.predict(data) / len((os.listdir(self.model_save_path)))
             pred_mean += pred
         pred_binaries = np.around(pred_mean).astype(int)

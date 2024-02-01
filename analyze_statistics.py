@@ -1,7 +1,7 @@
 from omegaconf import DictConfig
 import hydra
 
-from src.pipeline.statistics_pipeline import analyze_statistics
+from src.pipelines.statistics_pipeline import analyze_statistics
 
 
 @hydra.main(config_path="configs/", config_name="analyze_statistics.yaml")

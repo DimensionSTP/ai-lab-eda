@@ -1,6 +1,6 @@
 # @package _global_
 defaults:
-  - statistics_module: statistics_module
+  - statistics: statistics
   - hydra: hydra
 
 project_dir: C:/Users/ddang/Desktop/projects/ai-lab-eda
