@@ -1,0 +1,57 @@
+# @package _global_
+defaults:
+  - dataset: diabetes_dataset
+  - architecture: xgb_architecture
+  - tuner: xgb_tuner
+  - hydra: hydra
+
+project_dir: C:/Users/ddang/Desktop/projects/ai-lab-eda
+
+mode: train
+
+seed: 2024
+
+data_path: ${project_dir}/data
+data_type: all_data
+data_name: ${data_type}_${mode}.csv
+meaningful_features:
+  - HighBP
+  - HighChol
+  - CholCheck
+  - BMI
+  - Smoker
+  - Stroke
+  - HeartDiseaseorAttack
+  - PhysActivity
+  - Fruits
+  - Veggies
+  - HvyAlcoholConsump
+  - AnyHealthcare
+  - NoDocbcCost
+  - GenHlth
+  - MentHlth
+  - PhysHlth
+  - DiffWalk
+  - Sex
+  - Age
+  - Education
+  - Income
+
+model_name: xgb
+features: all_features
+
+num_folds: 10
+split_size: 0.2
+metric: f1
+num_trials: 100
+tuning_way: original
+hparams_save_path: ${project_dir}/hparams/${model_name}/${data_type}/${features}//${tuning_way}${num_trials}_trials
+
+is_tuned: True
+model_save_path: ${project_dir}/save_model/${model_name}/${data_type}/${features}
+result_path: ${project_dir}/result_reports/${model_name}/${data_type}/${features}
+result_name: ${mode}_result.csv
+plt_save_path: ${project_dir}/feature_importance/${model_name}/${data_type}/${features}
+
+run_name: ${model_name}-${data_type}-${features}-${mode}
+work_dir: ${hydra:runtime.cwd}
