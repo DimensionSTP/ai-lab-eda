@@ -1,2 +1,1 @@
-HYDRA_FULL_ERROR=1 python analyze_statistics.py
-HYDRA_FULL_ERROR=1 python analyze_statistics.py method=chi2
+HYDRA_FULL_ERROR=1 python analyze_statistics.py --multirun method=t_test,chi2
