@@ -37,7 +37,7 @@ Sign up for wandb.ai and get an authentication token.
 
 ### Data split for machine learning(train / test)
 
-* rename ECG data files before preprocessing
+* data preprocessing
 ```shell
 python get_dataset.py
 ```
