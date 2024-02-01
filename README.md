@@ -63,7 +63,7 @@ python main.py mode=train is_tuned={bool}
 
 * model testing
 ```shell
-python main.py mode=test is_tuned={bool} epoch={ckpt epoch}
+python main.py mode=test is_tuned={bool}
 ```
 
 * all model tuning
